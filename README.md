@@ -71,8 +71,10 @@ La cooperativa se encarga de gestionar las jornadas laborales y cuenta con un re
 - **Granjero del Mes:** Encontrar al granjero con más unidades acumuladas.
 - **Nivel Legendario:** Verificar si algún granjero superó las 1000 unidades.
 - **Recurso más productivo:** Encontrar el recurso de la cooperativa que más unidades otorga actualmente.
+- **Reporte de Producción:** Lista de unidades que da cara recurso.
 - **Censo:** Contar cuántos granjeros pueden trabajar con un recurso dado.
 - **Eslabón Débil:** De los granjeros que pueden trabajar con un determinado recurso, averiguar el menos productivo.
+- **Balance:** Obtener la suma de las unidades actuales de cada granjero que pueda trabajar con un determinado recurso.
 
 ---
 
@@ -81,4 +83,5 @@ La cooperativa se encarga de gestionar las jornadas laborales y cuenta con un re
 - 🐮 Una vaca saciada otorga 30 unidades y es apta para exportación.
 - 👩‍🌾 Ana suma 60 unidades al trabajar con el Manzano.
 - 🧔 Carlos, tras aprender a gestionar el Manzano, tiene 6 ayudantes y olvida a la Vaca.
-- 🏆 Luego de **preparar la jornada**, que **todos aprendan la Vaca** y **todos trabajen con la Vaca**, verificar quién es el granjero del mes.
+- 🏆 Luego de **preparar la jornada**, que **todos aprendan la Vaca** y **todos trabajen con la Vaca**, es la granjera del mes.
+- 🐔 Luego de una jornada laboral con las gallinas las unidades totales actuales es de 50.
