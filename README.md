@@ -1,4 +1,4 @@
-# 🚜 "FarmWollok"
+# 🚜 "Granja Wollok"
 
 ## 📋 Contexto
 En la cooperativa **"La Granja Wollok"**, los granjeros gestionan diversos **recursos** (animales, plantas, etc.) para obtener **unidades de producción**. El éxito de las jornadas laborales dependen de que los granjeros exploten correctamente el potencial de cada recurso según el clima y la disponibilidad.
