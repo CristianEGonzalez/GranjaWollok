@@ -1,50 +1,49 @@
 import recursos.*
 import granjeros.*
+import clientes.*
 import cooperativa.*
 
 describe "Tests de La Granja Wollok" {
-
-    test "Una vaca saciada otorga 30 unidades y es apta para exportación" {
-        vaca.saciar()
-        assert.equals(30, vaca.unidades())
-        assert.that(vaca.esAptoExportacion())
-    }
-
-    test "Ana suma 60 unidades al trabajar con el Manzano (20 unidades * 3 por ser exportable)" {
-        // Manzano otorga 20. Ana triplica por ser apto para exportación.
-        ana.trabajar(manzano)
-        assert.equals(60, ana.unidadesAcumuladas())
-    }
-
-    test "Carlos aprende el Manzano: olvida la vaca, suma un ayudante (5+1) y cambia su estado" {
-        // Inicialmente Carlos tiene la vaca y 5 ayudantes (impar, no puede trabajar)
-        carlos.aprenderRecurso(manzano)
-        
-        assert.equals(6, carlos.cantidadAyudantes())
-        assert.that(carlos.conoceRecurso(manzano))
-        assert.notThat(carlos.conoceRecurso(vaca))
-    }
-
-    test "Ana es la Ganadora tras preparar jornada, aprender y trabajar con la vaca" {
-        cooperativa.prepararJornada() // Vaca se sacia (30u), Clima nublado, Gallina cereales
-
-        cooperativa.asignarRecurso(vaca)
-        
-        // Todos trabajan con la vaca
-        cooperativa.jornadaLaboral(vaca)
-
-        /* Cálculos de puntos:
-        - Ana: 30 * 3 = 90 unidades.
-        - Beto: 30 + 10 (tractor) = 40 unidades.
-        - Carlos: Si empezó con 5 ayudantes y aprendió la vaca, ahora tiene 6 (PAR).
-          Trabaja: 30 + (6 * 5) = 60 unidades.
-        */
-
-        assert.equals(ana, cooperativa.granjeroDelMes())
-    }
-
-    test "el balance luego de trabajar con las gallinas es de 50"{
-      cooperativa.jornadaLaboral(gallina)
-      assert.equals(50, cooperativa.balance(gallina))
-    }
+  test "Una vaca hambrienta produce 15 unidades y no es apta para exportación" {
+    vaca.darHambre()
+    assert.equals(15, vaca.unidades())
+    assert.notThat(vaca.esAptoExportacion())
+  }
+  
+  test "La gallina con espinacas y clima templado produce 22 unidades" {
+    clima.seTempla()
+    gallina.cambiarAlimento(espinacas)
+    assert.equals(22, gallina.unidades())
+  }
+  
+  test "Ana vende el manzano a Ricardo con clima frío y cobra 20" {
+    clima.llegaElFrio()
+    ana.trabajar(manzano)
+    ana.venderA(ricardo)
+    assert.equals(20, ana.dinero())
+  }
+  
+  test "Carlos adquiere el manzano: sube su recargo a 40 y lo tiene en gestión" {
+    carlos.adquirir(manzano)
+    clima.llegaElFrio()
+    carlos.trabajar(manzano)
+    carlos.venderA(mateo)
+    assert.equals(40, carlos.dinero())
+  }
+  
+test "con clima frio, carlos adquiere manzano, jornada con vaca y manzano, feria agricola, trabajadora rural del manzano es ana" {
+    clima.llegaElFrio()
+    carlos.adquirir(manzano)
+    cooperativa.jornadaLaboral(vaca, manzano)
+    cooperativa.feriaAgricola()
+    assert.equals(ana, cooperativa.trabajadorRural(manzano))
+}
+  
+  test "El balance de granjeros que tienen la vaca refleja solo el dinero de Carlos" {
+    vaca.saciar()
+    clima.llegaElFrio()
+    carlos.trabajar(vaca)
+    carlos.venderA(mateo)
+    assert.equals(50, cooperativa.balance(vaca))
+  }
 }

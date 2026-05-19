@@ -1,91 +1,60 @@
 import recursos.*
+object ana{
+  const recursosGestionados = [gallina, manzano]
+  const recursosTrabajados = []
+  var dinero = 0
 
-object ana {
-    const recursosGestionados = [gallina, manzano]
-    var unidadesAcumuladas = 0
-    
-    method unidadesAcumuladas() = unidadesAcumuladas
-    
-    method conoceRecurso(recurso) = recursosGestionados.contains(recurso)
-    
-    method puedeTrabajar(recurso) = self.conoceRecurso(recurso)
-    
-    method trabajar(recurso) {
-        if (self.puedeTrabajar(recurso)) {
-            unidadesAcumuladas += self.calcularProduccion(recurso)
-        }
-    }
-    
-    method calcularProduccion(recurso) = 
-        if (recurso.esAptoExportacion()) recurso.unidades() * 3 
-        else recurso.unidades() / 2
+  method dinero() = dinero
 
-    method aprenderRecurso(recurso) {
-        if (recurso.esAptoExportacion() && !self.conoceRecurso(recurso)) {
-            recursosGestionados.add(recurso)
-        }
+  method trabajar(unRecurso){
+    if(self.tieneRecurso(unRecurso)){
+      recursosTrabajados.add(unRecurso)
     }
+  }
+
+  method tieneRecurso(unRecurso) = recursosGestionados.contains(unRecurso)
+
+  method venderA(unCliente){
+    if(unCliente.quiereComprar(recursosTrabajados))
+      dinero = dinero + if(unCliente.esAdinerado()) self.precioDeVenta() else self.precioDeVenta()*0.9  
+  }
+
+  method precioDeVenta() = recursosTrabajados.sum({r => r.unidades()})
+
+  method adquirir(unRecurso){
+    if(unRecurso.esAptoExportacion() && !self.tieneRecurso(unRecurso)){
+      recursosGestionados.add(unRecurso)
+    }
+  }
 }
 
-object beto {
-    const recursosGestionados = [vaca, gallina]
-    var unidadesAcumuladas = 0
-    var tractorFunciona = true
-    
-    method unidadesAcumuladas() = unidadesAcumuladas
-    
-    method conoceRecurso(recurso) = recursosGestionados.contains(recurso)
-    
-    method puedeTrabajar(recurso) = 
-        recursosGestionados.size() >= 2 && self.conoceRecurso(recurso)
-    
-    method trabajar(recurso) {
-        if (self.puedeTrabajar(recurso)) {
-            unidadesAcumuladas += recurso.unidades() + self.bonusTractor()
-        }
-    }
+object carlos{
+  const recursosGestionados = [vaca]
+  const recursosTrabajados = []
+  var dinero = 0
+  var recargoDeVenta = 0
 
-    method bonusTractor() = if (tractorFunciona) 10 else 0
+  method dinero() = dinero
 
-    method romperTractor(){
-      tractorFunciona = false
+  method trabajar(unRecurso){
+    if(self.tieneRecurso(unRecurso)){
+      recursosTrabajados.add(unRecurso)
     }
+  }
 
-    method arreglarTractor(){
-      tractorFunciona = true
-    }
-    
-    method aprenderRecurso(recurso) {
-        if (!self.conoceRecurso(recurso)) {
-            recursosGestionados.add(recurso)
-        }
-    }
-}
+  method tieneRecurso(unRecurso) = recursosGestionados.contains(unRecurso)
 
-object carlos {
-    var recursoActual = vaca
-    var unidadesAcumuladas = 0
-    var cantidadAyudantes = 5
+  method venderA(unCliente){
+    if(unCliente.quiereComprar(recursosTrabajados))
+    dinero = dinero + self.precioDeVenta()
+  }
 
-    method cantidadAyudantes() = cantidadAyudantes
-    
-    method unidadesAcumuladas() = unidadesAcumuladas
-    
-    method conoceRecurso(recurso) = recurso == recursoActual
-    
-    method puedeTrabajar(recurso) = 
-        cantidadAyudantes.even() && unidadesAcumuladas < 500 && self.conoceRecurso(recurso)
-    
-    method trabajar(recurso) {
-        if (self.puedeTrabajar(recurso)) {
-            unidadesAcumuladas += recurso.unidades() + (cantidadAyudantes * 2)
-        }
+  method precioDeVenta() = recursosTrabajados.sum({r => r.unidades()}) + recargoDeVenta
+
+    method adquirir(unRecurso){
+    if(!self.tieneRecurso(unRecurso)){
+      recursosGestionados.add(unRecurso)
+      recargoDeVenta += 20
     }
-    
-    method aprenderRecurso(nuevoRecurso) {
-        if (!self.conoceRecurso(nuevoRecurso)) {
-            recursoActual = nuevoRecurso
-            cantidadAyudantes += 1
-        }
-    }
+  }
 }

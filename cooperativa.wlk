@@ -1,34 +1,49 @@
 import granjeros.*
 import recursos.*
+import clientes.*
 
 object cooperativa {
-    const granjeros = [ana, beto, carlos]
-    const recursosDeGranja = [vaca, gallina, manzano]
-    
+    const granjeros = [ana, carlos]
+    const loteDeRecursos = [vaca, gallina, manzano]
+    const clientes = [ricardo, mateo]
+
+    method conseguir(unRecurso){
+      loteDeRecursos.add(unRecurso)
+    }
+    method desechar(unRecurso){
+      loteDeRecursos.remove(unRecurso)
+    }
+
     method prepararJornada() {
-        clima.seNubla()
         vaca.saciar()
-        gallina.cambiarAlimento(cereales)
+        gallina.cambiarAlimento(espinacas)
+        self.asignarRecurso(manzano)
     }
     
     method asignarRecurso(recurso) {
-        granjeros.forEach({ granjero => granjero.aprenderRecurso(recurso) })
+        granjeros.forEach({ granjero => granjero.adquirir(recurso) })
     }
     
-    method jornadaLaboral(recurso) {
-        granjeros.forEach({ granjero => granjero.trabajar(recurso) })
+    method jornadaLaboral(unRecurso, otroRecurso) {
+        granjeros.forEach({
+          granjero =>
+            granjero.trabajar(unRecurso)
+            granjero.trabajar(otroRecurso)
+        })
     }
     
-    method granjeroDelMes() = granjeros.max({ granjero => granjero.unidadesAcumuladas() })
+    method feriaAgricola(){
+      granjeros.forEach({g => g.venderA(clientes.first())})
+    }
     
-    method hayGranjeroLegendario() = granjeros.any({ granjero => granjero.unidadesAcumuladas() > 1000 })
+    method hayGranjeroLegendario() = granjeros.any({ granjero => granjero.dinero() > 1000 })
     
-    method reporteProduccion() = recursosDeGranja.map({ recurso => recurso.unidades() })
+    method reporteProduccion() = loteDeRecursos.map({ recurso => recurso.unidades() })
 
-    method censo(recurso) = granjeros.count({ g => g.puedeTrabajar(recurso) })
+    method hayTerrateniente() = clientes.any({ g => g.quiereComprar(loteDeRecursos) })
 
-    method granjerosQuePuedenTrabajar(recurso) = granjeros.filter({ g => g.puedeTrabajar(recurso) })
-    method eslabonDebil(recurso) = self.granjerosQuePuedenTrabajar(recurso).min({ g => g.unidadesAcumuladas() })
+    method granjerosQueTienen(recurso) = granjeros.filter({ g => g.tieneRecurso(recurso) })
+    method trabajadorRural(recurso) = self.granjerosQueTienen(recurso).min({ g => g.dinero() })
 
-    method balance(recurso) = self.granjerosQuePuedenTrabajar(recurso).map({ g => g.unidadesAcumuladas() }).sum()
+    method balance(recurso) = self.granjerosQueTienen(recurso).sum({ g => g.dinero() })
 }

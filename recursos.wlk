@@ -11,30 +11,33 @@ object vaca {
 object gallina {
     var alimento = maiz
     
-    method unidades() = alimento.unidadesProducidas()
-    method esAptoExportacion() = self.unidades() > 9
+    method unidades() = alimento.unidadesQueOtorga()
+    method esAptoExportacion() = self.unidades() > 10
     
     method cambiarAlimento(nuevo) { alimento = nuevo }
 }
 
-// Objetos de configuración para la gallina
 object maiz {
-    method unidadesProducidas() = 10
+    method unidadesQueOtorga() = 10
 }
 
-object cereales {
-    method unidadesProducidas() = if (clima.esSoleado()) 12 else 8
+object trigo {
+    method unidadesQueOtorga() = if (clima.templado()) 12 else 8
+}
+
+object espinacas{
+    method unidadesQueOtorga() = trigo.unidadesQueOtorga() + maiz.unidadesQueOtorga()
 }
 
 object clima{
-    var soleado = true
-    method esSoleado() = soleado
+    var templado = true
+    method templado() = templado
 
-    method saleElSol() { soleado = true }
-    method seNubla() { soleado = false }
+    method llegaElFrio() { templado = false }
+    method seTempla() { templado = true }
 }
 
 object manzano {
     method unidades() = 20
-    method esAptoExportacion() = true
+    method esAptoExportacion() = !clima.templado()
 }
