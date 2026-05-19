@@ -79,14 +79,6 @@ La cooperativa se encarga de gestionar las jornadas laborales, cuenta con un reg
 
 ## ✅ Tests Mínimos
 
-- 🐮 Una vaca saciada otorga 30 unidades y es apta para exportación.
-- 👩‍🌾 Ana suma 60 unidades al trabajar con el Manzano.
-- 🧔 Carlos, tras aprender a gestionar el Manzano, tiene 6 ayudantes y olvida a la Vaca.
-- 🏆 Luego de **preparar la jornada**, que **todos aprendan la Vaca** y **todos trabajen con la Vaca**, es la granjera del mes.
-- 🐔 Luego de una jornada laboral con las gallinas las unidades totales actuales es de 50.
-
-# ✅ Tests Mínimos — Granja Wollok
-
 ### 🐮 Test 1 — Vaca hambrienta: producción y exportación
 Una vaca hambrienta produce **15 unidades** y **no es apta** para exportación.
 
