@@ -1,80 +1,79 @@
 # 🚜 "Granja Wollok"
 
 ## 📋 Contexto
-En la cooperativa **"La Granja Wollok"**, los granjeros gestionan diversos **recursos** (animales, plantas, etc.) para obtener **unidades de producción**. El éxito de las jornadas laborales dependen de que los granjeros exploten correctamente el potencial de cada recurso según el clima y la disponibilidad.
+En la cooperativa **"La Granja Wollok"**, los granjeros gestionan diversos **recursos** (animales, plantas, etc.) para obtener **unidades de producción** que pueden vender.
+
+El éxito de las jornadas laborales dependen de que los granjeros exploten correctamente el potencial de cada recurso según el clima y la disponibilidad.
 
 ---
 
-## 🌻 Recursos Disponibles
+## Recursos Disponibles
 
-### Vaca (Animal)
+### 🐮 Vaca 
 Su producción de leche depende de su estado de saciedad:
-- **Saciada:** Produce 30 unidades | ✅ Apto exportación.
-- **Hambrienta:** Produce 15 unidades | ❌ No apto exportación.
+- **Saciada:** Produce 30 unidades | Apto exportación.
+- **Hambrienta:** Produce 15 unidades | No apto exportación.
 
-### Gallina (Animal)
+### 🐔 Gallina
 Su producción depende del alimento asignado:
-- **Maíz:** Produce 10 unidades | ✅ Apto exportación.
-- **Cereales:** Produce 12 unidades si el día está **soleado**, pero solo 8 si está **nublado**.
-  - Es apto para exportación solo si produce más de 9 unidades.
+- **Maíz:** Produce 10 unidades
+- **Trigo:** Produce 12 unidades con **clima templado**, pero solo 8 si hay **clima frío**.
+- **Espinacas:** Produce la misma cantidad que el maiz y trigo juntos (independientemente del clima).
 
-### Manzano (Cosecha)
+Es apto para exportación solo si produce más de 10 unidades.
+
+### 🍎 Manzano
 - **Producción:** 20 unidades.
-- **Exportación:** ✅ Siempre es apto para exportación.
+- **Exportación:** Es apto para exportación si hay **clima frío**.
 
 ---
 
-## 👨‍🌾 Granjeros
+## Granjeros
 
-Los granjeros solo pueden `trabajar` con recursos que **tienen a su cargo** y si cumplen con sus **condiciones de personalidad**.
+Los granjeros `gestionan recursos`. Y pueden **trabajar** las veces que quieran con los recursos que **gestionan**, para luego vender todos los `recursos trabajados` (juntos por lote) a los **clientes interesados**.
 
-### 👩‍🌾 Ana (La Especialista)
+Todos los granjeros comienzan sin dinero.
+
+### 👩‍🌾 Ana
 - **Recursos iniciales:** Gallina, Manzano.
+- **Precio de Venta:** Ana vende sus recursos trabajados un 10% menos de las unidades que estos producen cuando el cliente no es adinerado.
+- **Adquisición de Recursos:** Solo acepta sumar a su cargo nuevos recursos que sean aptos para exportación.
 
-**Personalidad:**
-- Solo necesita tener el recurso asignado para trabajar con él.
-- **Bonus Exportación:** Recibe el **triple** de puntos si el recurso es apto para exportación.
-- **Penalización:** Recibe la **mitad** de puntos si el recurso NO es apto para exportación.
-- **Aprendizaje:** Solo acepta sumar a su cargo recursos que sean aptos para exportación.
+### 🧔 Carlos
+- **Recurso inicial:** Vaca
+- **Precio de venta de sus productos:** Aumenta sus precios en $20 cada vez que adquiere un nuevo recurso (empieza sin recargo).
+- **Adquisición de Recursos:** Adquiere cualquier recurso que no tenga.
 
-### 🤠 Beto (El Cooperativo)
-- **Recursos iniciales:** Vaca, Gallina.
+## Clientes
 
-**Personalidad:**
-- Puede trabajar cuando tiene al menos 2 recursos a su cargo.
-- **Bonus Maquinaria:** +10 unidades extra si su tractor está funcionando.
-- **Aprendizaje:** Puede aprender a gestionar cualquier tipo de recurso nuevo.
+Los clientes son quienes `compran` los **lotes** de recursos trabajados según determinadas condiciones propias.
 
-### 🧔 Carlos (El Tradicional)
-- **Recurso inicial:** Vaca (solo puede gestionar **un recurso a la vez**).
-- **Ayudantes:** 5 iniciales.
+### 👴 Ricardo
+Es un `adinerado` empresario por eso sólo le interesa comprar cuando todos los productos son de **exportación**.
 
-**Personalidad:**
-- **Condición para trabajar:** Que su cantidad de ayudantes sea **par** y no supere las **500 unidades** acumuladas.
-- **Bonus Ayudantes:** Suma +2 unidades por cada ayudante que tiene.
-- **Aprendizaje:** Al aprender un recurso nuevo, olvida el anterior y contrata a un nuevo ayudante (+1).
+### 🙇 Mateo
+Como `no es adinerado` siempre regatea los precios y sólo compra cuando hay **clima frío** que es cuando más ahorra.
 
 ---
 
 ## 🏢 La Cooperativa
 
-La cooperativa se encarga de gestionar las jornadas laborales y cuenta con un registro de todos los granjeros y recursos existentes. También puede contratar o despedir granjeros, y añadir o eliminar recursos.
+La cooperativa se encarga de gestionar las jornadas laborales, cuenta con un registro de todos los granjeros y clientes existentes, y además un lote de recursos. También puede conseguir o desechar recursos (incluso repetidos).
 
 ### Actividades realizadas por la cooperativa:
-
-- **Preparación de la Jornada:**
-  1. El clima se vuelve **nublado**.
-  2. Todas las vacas se **sacian**.
-  3. Las gallinas pasan a comer **cereales**.
-- **Asignar Recurso:** Enseñar a todos los granjeros a gestionar un recurso específico.
-- **Jornada Laboral:** Encargar que todos los granjeros trabajen con un recurso indicado.
-- **Granjero del Mes:** Encontrar al granjero con más unidades acumuladas.
-- **Nivel Legendario:** Verificar si algún granjero superó las 1000 unidades.
-- **Recurso más productivo:** Encontrar el recurso de la cooperativa que más unidades otorga actualmente.
-- **Reporte de Producción:** Lista de unidades que da cara recurso.
-- **Censo:** Contar cuántos granjeros pueden trabajar con un recurso dado.
-- **Eslabón Débil:** De los granjeros que pueden trabajar con un determinado recurso, averiguar el menos productivo.
-- **Balance:** Obtener la suma de las unidades actuales de cada granjero que pueda trabajar con un determinado recurso.
+(Indicar con comentarios el método que resuelve cada item solicitado)
+- 1 - **Preparación de la Jornada:**
+  - Se alimenta a la **vaca**.
+  - La gallina pasa a comer **espinacas**.
+  - Todos los granjeros adquieren el manzano (si pueden)
+- 2 - **Asignar Recurso:** Todos los granjeros adquierenun recurso específico para gestionar.
+- 3 - **Jornada Laboral:** Encargar que todos los granjeros trabajen con 2 recursos determinados (si los tienen).
+- 4 - **Feria Agrícola:** Todos los granjeros venden sus productos al primer cliente de la cooperativa.
+- 5 - **Granjero Legendario:** Verificar si algún granjero superó los $1000.
+- 6 - **Reporte de Producción:** Lista de unidades que da cada recurso (actualmente).
+- 7 - **Hay terrateniente:** Averiguar si alguno de los cliente quiere comprar el lote de recursos de la cooperativa.
+- 8 - **Trabajador rural:** De los granjeros que pueden trabajar con un determinado recurso, averiguar el más humilde (el que tiene  menos dinero)
+- 9 - **Balance:** Obtener la suma del dinero actual de todos los granjeros que tengan un determinado recurso.
 
 ---
 
@@ -85,3 +84,41 @@ La cooperativa se encarga de gestionar las jornadas laborales y cuenta con un re
 - 🧔 Carlos, tras aprender a gestionar el Manzano, tiene 6 ayudantes y olvida a la Vaca.
 - 🏆 Luego de **preparar la jornada**, que **todos aprendan la Vaca** y **todos trabajen con la Vaca**, es la granjera del mes.
 - 🐔 Luego de una jornada laboral con las gallinas las unidades totales actuales es de 50.
+
+# ✅ Tests Mínimos — Granja Wollok
+
+### 🐮 Test 1 — Vaca hambrienta: producción y exportación
+Una vaca hambrienta produce **15 unidades** y **no es apta** para exportación.
+
+> ⚠️ **Nota:** Este test excepcionalmente puede tener 2 assert.
+
+---
+
+### 🐔 Test 2 — Gallina con espinacas y clima templado
+La gallina alimentada con espinacas bajo clima templado produce **22 unidades**.
+
+---
+
+### 👩‍🌾 Test 3 — Ana vende a cliente adinerado
+Con **clima frío**, Ana trabaja con el Manzano y lo vende a Ricardo. → El dinero de Ana ahora es **$20**.
+
+---
+
+
+### 🧔 Test 4 — Carlos adquiere un recurso y sube su recargo
+Carlos adquiere el Manzano, llega el **clima frío**, él trabaja el Manzano y vende a Mateo → su dinero ahora es **$40**
+
+---
+
+### 🏢 Test 5 — Balance de granjeros que tienen la Vaca
+- Llega el clima frío
+- Carlos adquiere el Manzano.
+- Luego se realiza una jornada laboral con la Vaca y el Manzano
+- La cooperativa organiza la feria agrícola.
+
+Como resultado la **trabajadora rural que puede trabajar el Manzano** es **Ana**.
+
+---
+
+### 🏢 Test 6 — Balance de granjeros que tienen la Vaca
+Con la vaca saciada y **clima frío**, Carlos trabaja la Vaca y vende a Mateo → El balance de la cooperativa para ese recurso es **$50**.
